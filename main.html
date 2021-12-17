@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+  <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+  <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+  <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+      <script src=
+"https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+<script src="https://unpkg.com/filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.js"></script>
+  
+</head>
+<body>
+
+
+  <input name = "file" type="file" id="geeks">
+  <h4><!-- Selected file will get here --></h4>
+   
+ 
+</body>
+
+
+<script>
+ 
+
+    $(document).ready(function(){
+        $('input[type="file"]').change(function(e){
+            var fileName = e.target.files[0].name;
+            alert('The file "' + fileName +  '" has been selected.');
+        });
+    });
+
+
+  FilePond.registerPlugin(FilePondPluginFileValidateType);
+  FilePond.registerPlugin(FilePondPluginImagePreview);
+  FilePond.registerPlugin(FilePondPluginPdfPreview);
+  const inputElement = document.querySelector('input[type="file"]');
+  const pond = FilePond.create(inputElement);
+
+ // const pond = FilePond.create( inputElement,
+//  {
+//      acceptedFileTypes: ["txt/*"],
+//      allowFileTypeValidation: true
+// } );
+  
+pond.setOptions({
+    server: "/upload"
+  })
+
+</script>
+
+</html>
